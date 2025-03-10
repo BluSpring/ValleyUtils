@@ -2,6 +2,7 @@ package xyz.bluspring.valleyutils.live.util
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import net.fabricmc.loader.api.FabricLoader
 import org.slf4j.LoggerFactory
 import java.net.URI
 import java.net.http.HttpClient
@@ -10,7 +11,11 @@ import java.net.http.HttpResponse
 import java.time.Duration
 
 object YoutubeApi {
-    val apiKey = "AIzaSyDXCm2e20zJ-WvKOfKHout6T89akF2q0L8"
+    val apiKey = FabricLoader.getInstance().configDir.resolve("valleyutils_yt_key.txt").toFile().run {
+        if (this.exists())
+            this.readText()
+        else ""
+    }
     private val logger = LoggerFactory.getLogger(YoutubeApi::class.java)
 
     fun get(url: String): JsonObject? {
