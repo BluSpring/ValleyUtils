@@ -2,6 +2,7 @@ package xyz.bluspring.valleyutils.live.util
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import net.fabricmc.loader.api.FabricLoader
 import okhttp3.CacheControl
 import okhttp3.FormBody
 import okhttp3.MediaType.Companion.toMediaType
@@ -16,7 +17,11 @@ object TwitchApi {
     private val client = OkHttpClient()
 
     val clientId = "pjauiub7dh0kgopvo0f8npw6v5gf7k"
-    val clientSecret = "8v92dt49ehbya42y6zm4zl7axh00bw"
+    val clientSecret = FabricLoader.getInstance().configDir.resolve("valleyutils_twitch_secret.txt").toFile().run {
+        if (this.exists())
+            this.readText()
+        else ""
+    }
 
     var accessToken: String? = null
 

@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.Player
 import xyz.bluspring.valleyutils.client.ValleyUtilsClient
 import xyz.bluspring.valleyutils.live.LiveManager
 import xyz.bluspring.valleyutils.live.ServerLiveManager
+import xyz.bluspring.valleyutils.live.util.TwitchApi
 import java.nio.ByteBuffer
 import java.util.concurrent.ConcurrentLinkedQueue
 
@@ -27,12 +28,14 @@ class ValleyUtils : ModInitializer {
             hasValleyUtilsPlayers.clear()
         }
 
-        ServerLifecycleEvents.SERVER_STARTING.register {
-            liveManager = ServerLiveManager(it)
-        }
+        if (TwitchApi.clientSecret.isNotBlank()) {
+            ServerLifecycleEvents.SERVER_STARTING.register {
+                liveManager = ServerLiveManager(it)
+            }
 
-        ServerLifecycleEvents.SERVER_STOPPING.register {
-            liveManager?.onClose()
+            ServerLifecycleEvents.SERVER_STOPPING.register {
+                liveManager?.onClose()
+            }
         }
     }
 
