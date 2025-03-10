@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#vinery:large_bottle",
+      "replace": false
+    },
+    {
+      "id": "#vinery:red_wine",
+      "replace": false
+    },
+    {
+      "id": "#vinery:white_wine",
+      "replace": false
+    },
+    {
+      "id": "#vinery:small_bottle",
+      "replace": false
+    }
+  ]
+}
