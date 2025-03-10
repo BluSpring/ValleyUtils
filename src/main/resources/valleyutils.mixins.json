@@ -9,10 +9,6 @@
     "fixes.arsenal.AnchorbladeItemMixin",
     "fixes.arsenal.ArsenalCosmeticsMixin",
     "fixes.deflect.ArrowIndactorProcedureMixin",
-    "fixes.vinery.CreeperEffectMixin",
-    "fixes.yungscavebiomes.IcicleBlockMixin",
-    "fixes.yungscavebiomes.PricklyVinesBlockMixin",
-    "fixes.yungscavebiomes.PricklyVinesPlantBlockMixin",
     "tweaks.enchancement.beheading.AxeEnchantmentMixin",
     "tweaks.enchancement.bouncy.LivingEntityMixin"
   ],
