@@ -1,0 +1,5 @@
+{
+  "type": "minecraft:add",
+  "argument1": "tectonic:overworld/biome_noise/erosion",
+  "argument2": 0
+}

@@ -1,0 +1,5 @@
+{
+  "type": "minecraft:add",
+  "argument1": "tectonic:overworld_large_biomes/biome_noise/depth",
+  "argument2": 0
+}
