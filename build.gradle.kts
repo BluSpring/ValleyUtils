@@ -42,6 +42,7 @@ repositories {
     maven("https://maven.ladysnake.org/releases")
     maven("https://maven.uuid.gg/releases")
     maven("https://maven.jamieswhiteshirt.com/libs-release")
+    maven("https://maven.kyrptonaught.dev")
 
     flatDir {
         dirs("libs")
@@ -87,6 +88,8 @@ dependencies {
     modRuntimeOnly("maven.modrinth:cloth-config:11.1.136+fabric")
 
     include(implementation("com.moulberry:mixinconstraints:1.0.6")!!)
+
+    include(modImplementation("net.kyrptonaught:customportalapi:0.0.1-beta65-1.20")!!)
 
     if (file("libs").isDirectory()) {
         file("libs").listFiles().forEach { file ->

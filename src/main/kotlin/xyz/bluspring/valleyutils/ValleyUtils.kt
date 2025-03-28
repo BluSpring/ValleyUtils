@@ -4,8 +4,13 @@ import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
+import net.kyrptonaught.customportalapi.api.CustomPortalBuilder
+import net.kyrptonaught.customportalapi.portal.PortalIgnitionSource
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.player.Player
+import net.minecraft.world.item.Items
+import net.minecraft.world.level.Level
+import net.minecraft.world.level.block.Blocks
 import xyz.bluspring.valleyutils.client.ValleyUtilsClient
 import xyz.bluspring.valleyutils.live.LiveManager
 import xyz.bluspring.valleyutils.live.ServerLiveManager
@@ -37,6 +42,30 @@ class ValleyUtils : ModInitializer {
                 liveManager?.onClose()
             }
         }
+
+        CustomPortalBuilder.beginPortal()
+            .frameBlock(Blocks.MOSS_BLOCK)
+            .lightWithItem(Items.POTION)
+            .destDimID(id("old_overworld"))
+            .tintColor(120, 51, 174)
+            .returnDim(Level.OVERWORLD.location(), false)
+            .tintColor(36, 156, 229)
+            .registerPortal()
+
+        CustomPortalBuilder.beginPortal()
+            .frameBlock(Blocks.CRYING_OBSIDIAN)
+            .customIgnitionSource(PortalIgnitionSource.FIRE)
+            .destDimID(id("old_nether"))
+            .tintColor(120, 51, 174)
+            .returnDim(Level.NETHER.location(), false)
+            .registerPortal()
+
+        CustomPortalBuilder.beginPortal()
+            .frameBlock(Blocks.OBSIDIAN)
+            .customIgnitionSource(PortalIgnitionSource.FIRE)
+            .destDimID(id("old_nether"))
+            .returnDim(id("old_overworld"), false)
+            .registerPortalForced()
     }
 
     companion object {

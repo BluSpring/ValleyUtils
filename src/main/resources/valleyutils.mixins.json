@@ -1,25 +1,26 @@
 {
-  "plugin": "com.moulberry.mixinconstraints.ConstraintsMixinPlugin",
-  "required": true,
-  "minVersion": "0.8",
-  "package": "xyz.bluspring.valleyutils.mixin",
-  "compatibilityLevel": "JAVA_17",
-  "mixins": [
-    "feature.live.PlayerMixin",
-    "fixes.arsenal.AnchorbladeItemMixin",
-    "fixes.arsenal.ArsenalCosmeticsMixin",
-    "fixes.deflect.ArrowIndactorProcedureMixin",
-    "tweaks.enchancement.beheading.AxeEnchantmentMixin",
-    "tweaks.enchancement.bouncy.LivingEntityMixin"
-  ],
-  "client": [
-    "feature.live.PlayerTabOverlayMixin",
-    "fixes.enchancement.BrimstoneEntityRendererMixin",
-    "fixes.mipmap.MipmapGeneratorMixin",
-    "fixes.mipmap.SpriteContentsMixin",
-    "fixes.mipmap.SpriteLoaderMixin"
-  ],
-  "injectors": {
-    "defaultRequire": 1
+    "plugin": "com.moulberry.mixinconstraints.ConstraintsMixinPlugin",
+    "required": true,
+    "minVersion": "0.8",
+    "package": "xyz.bluspring.valleyutils.mixin",
+    "compatibilityLevel": "JAVA_17",
+    "mixins": [
+        "feature.live.PlayerMixin",
+        "fixes.arsenal.AnchorbladeItemMixin",
+        "fixes.arsenal.ArsenalCosmeticsMixin",
+        "fixes.deflect.ArrowIndactorProcedureMixin",
+        "tweaks.enchancement.beheading.AxeEnchantmentMixin",
+        "tweaks.enchancement.bouncy.LivingEntityMixin",
+        "tweaks.old_dimension.EndPortalBlockMixin"
+    ],
+    "client": [
+        "feature.live.PlayerTabOverlayMixin",
+        "fixes.enchancement.BrimstoneEntityRendererMixin",
+        "fixes.mipmap.MipmapGeneratorMixin",
+        "fixes.mipmap.SpriteContentsMixin",
+        "fixes.mipmap.SpriteLoaderMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
   }
 }
