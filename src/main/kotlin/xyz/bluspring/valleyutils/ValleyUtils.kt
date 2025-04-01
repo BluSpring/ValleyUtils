@@ -2,6 +2,7 @@ package xyz.bluspring.valleyutils
 
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
 import net.kyrptonaught.customportalapi.api.CustomPortalBuilder
@@ -35,25 +36,25 @@ class ValleyUtils : ModInitializer {
             hasValleyUtilsPlayers.clear()
         }
 
-        ServerPlayConnectionEvents.JOIN.register { handler, sender, server ->
-            val player = handler.player
+        ServerTickEvents.END_SERVER_TICK.register { server ->
+            for (player in server.playerList.players) {
+                if (!player.tags.contains("lv_moved_dimensions_v2")) {
+                    when (player.level().dimension().location()) {
+                        Level.OVERWORLD -> {
+                            player.teleportTo(server.getLevel(OLD_OVERWORLD), player.xo, player.yo, player.zo, player.yRot, player.xRot)
+                        }
 
-            if (!player.tags.contains("lv_moved_dimensions")) {
-                when (player.level().dimension().location()) {
-                    Level.OVERWORLD -> {
-                        player.teleportTo(server.getLevel(OLD_OVERWORLD), player.xo, player.yo, player.zo, player.yRot, player.xRot)
+                        Level.NETHER -> {
+                            player.teleportTo(server.getLevel(OLD_NETHER), player.xo, player.yo, player.zo, player.yRot, player.xRot)
+                        }
+
+                        Level.END -> {
+                            player.teleportTo(server.getLevel(OLD_END), player.xo, player.yo, player.zo, player.yRot, player.xRot)
+                        }
                     }
 
-                    Level.NETHER -> {
-                        player.teleportTo(server.getLevel(OLD_NETHER), player.xo, player.yo, player.zo, player.yRot, player.xRot)
-                    }
-
-                    Level.END -> {
-                        player.teleportTo(server.getLevel(OLD_END), player.xo, player.yo, player.zo, player.yRot, player.xRot)
-                    }
+                    player.addTag("lv_moved_dimensions_v2")
                 }
-
-                player.addTag("lv_moved_dimensions")
             }
         }
 
