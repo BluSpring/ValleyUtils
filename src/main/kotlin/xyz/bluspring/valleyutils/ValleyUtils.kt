@@ -39,7 +39,7 @@ class ValleyUtils : ModInitializer {
         ServerTickEvents.END_SERVER_TICK.register { server ->
             for (player in server.playerList.players) {
                 if (!player.tags.contains("lv_moved_dimensions_v2")) {
-                    when (player.level().dimension().location()) {
+                    when (player.level().dimension()) {
                         Level.OVERWORLD -> {
                             player.teleportTo(server.getLevel(OLD_OVERWORLD), player.xo, player.yo, player.zo, player.yRot, player.xRot)
                         }
