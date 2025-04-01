@@ -83,22 +83,15 @@ class ValleyUtils : ModInitializer {
             .tintColor(120, 51, 174)
             .returnDim(Level.NETHER.location(), false)
             .registerPortal()
-
-        CustomPortalBuilder.beginPortal()
-            .frameBlock(Blocks.OBSIDIAN)
-            .customIgnitionSource(PortalIgnitionSource.FIRE)
-            .destDimID(id("old_nether"))
-            .returnDim(id("old_overworld"), false)
-            .registerPortalForced()
     }
 
     companion object {
         const val MOD_ID = "lavender_valley"
         val hasValleyUtilsPlayers = ConcurrentLinkedQueue<Player>()
 
-        val OLD_OVERWORLD = ResourceKey.create(Registries.DIMENSION, id("old_overworld"))
-        val OLD_NETHER = ResourceKey.create(Registries.DIMENSION, id("old_nether"))
-        val OLD_END = ResourceKey.create(Registries.DIMENSION, id("old_end"))
+        @JvmField val OLD_OVERWORLD = ResourceKey.create(Registries.DIMENSION, id("old_overworld"))
+        @JvmField val OLD_NETHER = ResourceKey.create(Registries.DIMENSION, id("old_nether"))
+        @JvmField val OLD_END = ResourceKey.create(Registries.DIMENSION, id("old_end"))
 
         var liveManager: LiveManager? = null
 

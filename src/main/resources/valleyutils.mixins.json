@@ -11,7 +11,9 @@
         "fixes.deflect.ArrowIndactorProcedureMixin",
         "tweaks.enchancement.beheading.AxeEnchantmentMixin",
         "tweaks.enchancement.bouncy.LivingEntityMixin",
-        "tweaks.old_dimension.EndPortalBlockMixin"
+        "tweaks.old_dimension.BaseFireBlockMixin",
+        "tweaks.old_dimension.EndPortalBlockMixin",
+        "tweaks.old_dimension.EntityMixin"
     ],
     "client": [
         "feature.live.PlayerTabOverlayMixin",
