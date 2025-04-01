@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
+import net.fabricmc.loader.api.FabricLoader
 import net.kyrptonaught.customportalapi.api.CustomPortalBuilder
 import net.kyrptonaught.customportalapi.portal.PortalIgnitionSource
 import net.minecraft.core.registries.Registries
@@ -84,6 +85,63 @@ class ValleyUtils : ModInitializer {
             .tintColor(120, 51, 174)
             .returnDim(Level.NETHER.location(), false)
             .registerPortal()
+
+        val bobbyPath = FabricLoader.getInstance().gameDir.resolve(".bobby/lavendervalley.bluspring.xyz/6061169177817882417").toFile()
+
+        if (bobbyPath.exists()) {
+            if (bobbyPath.resolve("minecraft/overworld").exists() && !bobbyPath.resolve("lavender_valley/old_overworld").exists()) {
+                bobbyPath.copyTo(bobbyPath.resolve("lavender_valley/old_overworld"))
+                bobbyPath.resolve("minecraft/overworld").delete()
+            }
+
+            if (bobbyPath.resolve("minecraft/the_nether").exists() && !bobbyPath.resolve("lavender_valley/old_nether").exists()) {
+                bobbyPath.copyTo(bobbyPath.resolve("lavender_valley/old_nether"))
+                bobbyPath.resolve("minecraft/the_nether").delete()
+            }
+
+            if (bobbyPath.resolve("minecraft/the_end").exists() && !bobbyPath.resolve("lavender_valley/old_end").exists()) {
+                bobbyPath.copyTo(bobbyPath.resolve("lavender_valley/old_end"))
+                bobbyPath.resolve("minecraft/the_end").delete()
+            }
+        }
+
+        val xaeroMinimapPath = FabricLoader.getInstance().gameDir.resolve("xaero/minimap/Multiplayer_lavendervalley.bluspring.xyz").toFile()
+
+        if (xaeroMinimapPath.exists()) {
+            if (xaeroMinimapPath.resolve("dim%0").exists() && !xaeroMinimapPath.resolve("dim%lavender_valley\$old_overworld").exists()) {
+                xaeroMinimapPath.copyTo(xaeroMinimapPath.resolve("dim%lavender_valley\$old_overworld"))
+                xaeroMinimapPath.resolve("dim%0").delete()
+            }
+
+            if (xaeroMinimapPath.resolve("dim%1").exists() && !xaeroMinimapPath.resolve("dim%lavender_valley\$old_end").exists()) {
+                xaeroMinimapPath.copyTo(xaeroMinimapPath.resolve("dim%lavender_valley\$old_end"))
+                xaeroMinimapPath.resolve("dim%1").delete()
+            }
+
+            if (xaeroMinimapPath.resolve("dim%-1").exists() && !xaeroMinimapPath.resolve("dim%lavender_valley\$old_nether").exists()) {
+                xaeroMinimapPath.copyTo(xaeroMinimapPath.resolve("dim%lavender_valley\$old_nether"))
+                xaeroMinimapPath.resolve("dim%-1").delete()
+            }
+        }
+
+        val xaeroWorldmapPath = FabricLoader.getInstance().gameDir.resolve("xaero/world-map/Multiplayer_lavendervalley.bluspring.xyz").toFile()
+
+        if (xaeroWorldmapPath.exists()) {
+            if (xaeroWorldmapPath.resolve("null").exists() && !xaeroWorldmapPath.resolve("lavender_valley\$old_overworld").exists()) {
+                xaeroWorldmapPath.copyTo(xaeroWorldmapPath.resolve("lavender_valley\$old_overworld"))
+                xaeroWorldmapPath.resolve("null").delete()
+            }
+
+            if (xaeroWorldmapPath.resolve("DIM1").exists() && !xaeroWorldmapPath.resolve("lavender_valley\$old_end").exists()) {
+                xaeroWorldmapPath.copyTo(xaeroWorldmapPath.resolve("lavender_valley\$old_end"))
+                xaeroWorldmapPath.resolve("DIM1").delete()
+            }
+
+            if (xaeroWorldmapPath.resolve("DIM-1").exists() && !xaeroWorldmapPath.resolve("lavender_valley\$old_nether").exists()) {
+                xaeroWorldmapPath.copyTo(xaeroWorldmapPath.resolve("lavender_valley\$old_nether"))
+                xaeroWorldmapPath.resolve("DIM-1").delete()
+            }
+        }
     }
 
     companion object {
