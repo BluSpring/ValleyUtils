@@ -40,9 +40,9 @@ public abstract class EntityMixin {
 
     @ModifyArg(method = "handleNetherPortal", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/MinecraftServer;getLevel(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/server/level/ServerLevel;"))
     private ResourceKey<Level> useOldDimension(ResourceKey<Level> dimension) {
-        if (dimension == Level.OVERWORLD && this.level().dimension() == ValleyUtils.OLD_NETHER)
+        if (this.level().dimension() == ValleyUtils.OLD_NETHER)
             return ValleyUtils.OLD_OVERWORLD;
-        else if (dimension == Level.NETHER && this.level().dimension() == ValleyUtils.OLD_OVERWORLD)
+        else if (this.level().dimension() == ValleyUtils.OLD_OVERWORLD)
             return ValleyUtils.OLD_NETHER;
 
         return dimension;
