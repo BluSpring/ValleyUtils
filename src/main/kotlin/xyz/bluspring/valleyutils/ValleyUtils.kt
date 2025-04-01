@@ -6,6 +6,8 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
 import net.kyrptonaught.customportalapi.api.CustomPortalBuilder
 import net.kyrptonaught.customportalapi.portal.PortalIgnitionSource
+import net.minecraft.core.registries.Registries
+import net.minecraft.resources.ResourceKey
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Items
@@ -31,6 +33,28 @@ class ValleyUtils : ModInitializer {
 
         ServerLifecycleEvents.SERVER_STOPPING.register {
             hasValleyUtilsPlayers.clear()
+        }
+
+        ServerPlayConnectionEvents.JOIN.register { handler, sender, server ->
+            val player = handler.player
+
+            if (!player.tags.contains("lv_moved_dimensions")) {
+                when (player.level().dimension().location()) {
+                    Level.OVERWORLD -> {
+                        player.teleportTo(server.getLevel(OLD_OVERWORLD), player.xo, player.yo, player.zo, player.yRot, player.xRot)
+                    }
+
+                    Level.NETHER -> {
+                        player.teleportTo(server.getLevel(OLD_NETHER), player.xo, player.yo, player.zo, player.yRot, player.xRot)
+                    }
+
+                    Level.END -> {
+                        player.teleportTo(server.getLevel(OLD_END), player.xo, player.yo, player.zo, player.yRot, player.xRot)
+                    }
+                }
+
+                player.addTag("lv_moved_dimensions")
+            }
         }
 
         if (TwitchApi.clientSecret.isNotBlank()) {
@@ -71,6 +95,10 @@ class ValleyUtils : ModInitializer {
     companion object {
         const val MOD_ID = "lavender_valley"
         val hasValleyUtilsPlayers = ConcurrentLinkedQueue<Player>()
+
+        val OLD_OVERWORLD = ResourceKey.create(Registries.DIMENSION, id("old_overworld"))
+        val OLD_NETHER = ResourceKey.create(Registries.DIMENSION, id("old_nether"))
+        val OLD_END = ResourceKey.create(Registries.DIMENSION, id("old_end"))
 
         var liveManager: LiveManager? = null
 
